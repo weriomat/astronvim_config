@@ -14,3 +14,4 @@ return {
     }
     return config -- return final config table
 end,
+}
