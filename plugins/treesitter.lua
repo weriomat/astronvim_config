@@ -12,7 +12,7 @@ return {
       -- "java",
       -- "nix",
       "python",
-      -- "rust",
+      "rust",
       -- "yaml",
       -- "llvm",
     })

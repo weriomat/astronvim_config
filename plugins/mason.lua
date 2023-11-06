@@ -10,16 +10,16 @@ return {
         "lua_ls",
         "clangd",
         -- "bashls",
-        -- "cmake",
+        "cmake",
         -- "diagnosticls",
         -- "dotls",
-        --"hls",
+        "hls",
         -- "jsonls",
         -- "jdtls",
-        -- "marksman",
-        -- "rnix",
+        -- "marksman"
+        -- "nix",
         "pyright",
-        -- "rust_analyzer",
+        "rust_analyzer",
         -- "taplo",
         -- "lemminx",
         -- "yamlls",
@@ -35,6 +35,12 @@ return {
       opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
         "prettier",
         "stylua",
+        "ruff",
+        "mypy",
+        "black",
+        "clang_format",
+        "rustfmt",
+        "fourmolu",
       })
     end,
   },
@@ -45,12 +51,34 @@ return {
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
         "python",
-        -- "haskell",
+        "haskell",
         -- "cppdbg",
-        -- "codelldb",
+        "codelldb",
         -- "bash",
         -- "javadbg",
       })
+      --[[handlers = {
+        python = function(source_name)
+          local dap = require "dap"
+          dap.adapters.python = {
+            type = "executable",
+            command = "/usr/bin/python3",
+            args = {
+              "-m",
+              "debugpy.adapter",
+            },
+          }
+
+          dap.configurations.python = {
+            {
+              type = "python",
+              request = "launch",
+              name = "Launch file",
+              program = "${file}", -- This configuration will launch the current file if used.
+            },
+          }
+        end,
+      }--]]
     end,
   },
 }
